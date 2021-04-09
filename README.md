@@ -9,9 +9,11 @@ for future reference.
 Let's Encrypt's CertBot is used to obtain SSL certificates for Apache.
 
 https://www.perfsonar.net/
+
 User documenation: http://docs.perfsonar.net/
 
 The role was developed using these instructions: http://docs.perfsonar.net/install_debian.html
+
 For information on using Ansible: https://docs.ansible.com/ansible/latest/index.html
 
 Requirements
@@ -19,8 +21,7 @@ Requirements
 
 The role has been tested on Ubuntu 18.04.
 
-The following firewall ports should be configured as they are not covered by
-this role.
+For firewall settings please refer to: https://www.perfsonar.net/deployment_security.html#default-firewall-rules-and-requirements
 
 A DNS entry is required before installing this role.
 
@@ -29,7 +30,7 @@ Example Inventory and Playbook
 
 This repository contains a sample Ansible inventory and playbook.
 
-The inventory file `sonarinventory` is setup to create 1 instance of the toolkit.
+The inventory file `sonarinventory` is setup to create one instance of the toolkit.
 
  - 'sonar.example.edu.au' On this machine the package 'perfsonar-toolkit' is
  installed along with 'cerbot' to setup SSL certificates.
@@ -44,7 +45,7 @@ Role Variables
 The following variables should be set prior to running the role.
 
 - vars/certbot.yml - Let's Encrypt Certbot configuration
-  - certbot_email: contact email address for Let's Encrypt
+- certbot_email: contact email address for Let's Encrypt
 
 
 These files will need customising for your site:
