@@ -1,0 +1,5 @@
+
+- hosts: 'SonarNodes'
+  gather_facts: False
+  roles:
+  - { role: perfsonarbuild, tags: [ perfsonarbuild ] }

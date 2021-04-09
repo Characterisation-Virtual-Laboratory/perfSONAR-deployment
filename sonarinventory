@@ -1,0 +1,14 @@
+#!/bin/bash
+echo '{
+    "SonarNodes": [
+        "sonar.example.edu.au"
+    ],
+    "_meta": {
+        "hostvars": {
+            "sonar.example.edu.au": {
+                "ansible_host": "Put host IP here",
+                "ansible_user": "Put user here",
+            }
+        }
+    }
+}'

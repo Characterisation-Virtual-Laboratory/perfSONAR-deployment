@@ -1,0 +1,76 @@
+
+- include_vars: certbot.yml
+
+- name: Ensure the hostname is set
+  hostname:
+    name: "{{ inventory_hostname }}"
+  become: yes
+  become_user: root
+
+- name: Adding perfsonar as a repository
+  get_url:
+    url:  http://downloads.perfsonar.net/debian/perfsonar-release.list
+    dest: /etc/apt/sources.list.d/perfsonar-release.list
+  become: yes
+  become_user: root
+
+- name: Adding perfsonar apt key
+  apt_key:
+    url:  http://downloads.perfsonar.net/debian/perfsonar-official.gpg.key
+    state: present
+  become: yes
+  become_user: root
+
+- name: Install perfsonar-toolkit
+  apt:
+    pkg: perfsonar-toolkit
+    update_cache: yes
+  become: yes
+  become_user: root
+
+#Install snapd and setup certbot
+- name: Install snapd
+  apt:
+    pkg: snapd
+  become: yes
+  become_user: root
+
+- name: snap install core
+  snap:
+    name: core
+  become: yes
+  become_user: root
+
+- name: refresh snap core
+  command: "snap refresh core"
+  become: yes
+  become_user: root
+
+- name: Install certbot classic
+  snap:
+    name: certbot
+    classic: yes
+  become: yes
+  become_user: root
+
+- name: symlink for classic certbot
+  file:
+    src: /snap/bin/certbot
+    dest: /usr/bin/certbot
+    state: link
+  become: yes
+  become_user: root
+
+- name: setting ServerName for Apache. Required for CertBot
+  replace:
+    path: /etc/apache2/sites-enabled/000-default.conf
+    regexp: '(#ServerName www.example.com)'
+    replace: 'ServerName {{ inventory_hostname }}'
+  become: yes
+  become_user: root
+
+#Setup certbot for Apache
+- name: Setup Let's Encrypt SSL certificates for Apache
+  command: "/snap/bin/certbot -d {{ inventory_hostname }} --apache  -n -m {{ certbot_email }} --agree-tos"
+  become: yes
+  become_user: root
