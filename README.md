@@ -45,7 +45,7 @@ Role Variables
 The following variables should be set prior to running the role.
 
 - vars/certbot.yml - Let's Encrypt Certbot configuration
-- certbot_email: contact email address for Let's Encrypt
+  - certbot_email: contact email address for Let's Encrypt
 
 
 These files will need customising for your site:
