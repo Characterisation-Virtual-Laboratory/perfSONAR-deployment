@@ -37,7 +37,7 @@ The inventory file `sonarinventory` is setup to create one instance of the toolk
 
 To run the playbook to install perfSONAR:
 
-> ansible-playbook  -i sonarinventory -l perfsonarbuild -t m3_globus sonarnodes.yml
+> ansible-playbook  -i sonarinventory -l perfsonarbuild -t perfsonarbuild sonarnodes.yml
 
 Role Variables
 --------------
