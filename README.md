@@ -33,7 +33,7 @@ This repository contains a sample Ansible inventory and playbook.
 The inventory file `sonarinventory` is setup to create one instance of the toolkit.
 
  - 'sonar.example.edu.au' On this machine the package 'perfsonar-toolkit' is
- installed along with 'cerbot' to setup SSL certificates.
+ installed along with 'certbot' to setup SSL certificates.
 
 To run the playbook to install perfSONAR:
 
